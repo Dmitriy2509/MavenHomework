@@ -14,62 +14,49 @@ import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertEquals;
 
-public class PetClinicTest {
-
-    private WebDriver driver;
-
-    @BeforeClass
-    public void setUp() {
-
-        WebDriverManager.chromedriver().setup();
+public class PetClinicTest extends BaseTestClass {
 
 
-    }
-
-    @BeforeMethod
-    public void setUpDriver() {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(5000, TimeUnit.MILLISECONDS);
-
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        driver.quit();
-    }
 
     //positive test case Add new owner
     @Test
     public void AddNewOwnerValidData(){
 
-        String urlOwnerForm = ("http://139.59.149.247:8000/petclinic/owners/add");
-        driver.get(urlOwnerForm);
-
         //Set valid data onto fields
+//        String urlOwnerForm = ("http://139.59.149.247:8000/petclinic/owners/add");
+//        driver.get(urlOwnerForm);
+        goToNewOwner();
 
-        WebElement firstNameField = driver.findElement(By.id("firstName"));
-        firstNameField.clear();
-        firstNameField.sendKeys("Dmitriy");
+//        WebElement firstNameField = driver.findElement(By.id("firstName"));
+//        firstNameField.clear();
+//        firstNameField.sendKeys("Dmitriy");
 
-        WebElement lastNameField = driver.findElement(By.cssSelector("#lastName"));
-        lastNameField.clear();
-        lastNameField.sendKeys("Nobody)");
+        setNameOntoFirstNameField("Dmitriy");
 
-        WebElement adress = driver.findElement(By.id("address"));
-        adress.clear();
-        adress.sendKeys("flat 42");
+//        WebElement lastNameField = driver.findElement(By.cssSelector("#lastName"));
+////        lastNameField.clear();
+////        lastNameField.sendKeys("Nobody)");
+        setLastnameOntoLastnameField("D");
 
-        WebElement city = driver.findElement(By.cssSelector("#city"));
-        city.clear();
-        city.sendKeys("Dnipro");
+//        WebElement adress = driver.findElement(By.id("address"));
+//        adress.clear();
+//        adress.sendKeys("flat 42");
+        setAddressOntoAddressField();
 
-        WebElement telephone = driver.findElement(By.id("telephone"));
-        telephone.clear();
-        telephone.sendKeys("380997258137");
+//        WebElement city = driver.findElement(By.cssSelector("#city"));
+//        city.clear();
+//        city.sendKeys("Dnipro");
+        setCityOntoCityField();
 
-//        WebElement  addOwnerButton = driver.findElement(By.name("Add Owner"));
-//        addOwnerButton.click();
+//        WebElement telephone = driver.findElement(By.id("telephone"));
+//        telephone.clear();
+//        telephone.sendKeys("380997258137");
+
+        setPhoneNumberOntoPhoneNumberField();
+
+//       WebElement  addOwnerButton = driver.findElement(By.xpath("//*[text()='Add Owner']"));
+//       addOwnerButton.click();
+        clickAddOwnerButton();
 
     }
 
@@ -79,12 +66,14 @@ public class PetClinicTest {
     @Test
     public void firstNameFieldCheckInfMessage(){
 
-        String urlOwnerForm = ("http://139.59.149.247:8000/petclinic/owners/add");
-        driver.get(urlOwnerForm);
+//        String urlOwnerForm = ("http://139.59.149.247:8000/petclinic/owners/add");
+//        driver.get(urlOwnerForm);
+        goToNewOwner();
 
-        WebElement firstNameFieldInvalData = driver.findElement(By.id("firstName"));
-        firstNameFieldInvalData.clear();
-        firstNameFieldInvalData.sendKeys("1");
+//        WebElement firstNameFieldInvalData = driver.findElement(By.id("firstName"));
+//        firstNameFieldInvalData.clear();
+//        firstNameFieldInvalData.sendKeys("1");
+        setNameOntoFirstNameField("1");
 
         WebElement checkTextOfFirstnameField = driver.findElement(By.xpath("//div/span[@class='help-block']"));
         String checkTextOfFirstnameFieldText =  checkTextOfFirstnameField.getText();
@@ -97,12 +86,14 @@ public class PetClinicTest {
     @Test
     public void lastNameFieldCheckInfMessage(){
 
-        String urlOwnerForm = ("http://139.59.149.247:8000/petclinic/owners/add");
-        driver.get(urlOwnerForm);
+//        String urlOwnerForm = ("http://139.59.149.247:8000/petclinic/owners/add");
+//        driver.get(urlOwnerForm);
+        goToNewOwner();
 
-        WebElement lastNameFieldInvalData = driver.findElement(By.id("lastName"));
-        lastNameFieldInvalData.clear();
-        lastNameFieldInvalData.sendKeys("5");
+//        WebElement lastNameFieldInvalData = driver.findElement(By.id("lastName"));
+//        lastNameFieldInvalData.clear();
+//        lastNameFieldInvalData.sendKeys("5");
+        setLastnameOntoLastnameField("5");
 
         WebElement checkTextofLastnameField = driver.findElement(By.xpath("//*[text()='Last name must be at least 2 characters long']"));
         String checkTextofLastnameFieldText = checkTextofLastnameField.getText();
@@ -111,20 +102,66 @@ public class PetClinicTest {
 
     }
 
+    @Test
+    public void addressFieldCheckInfMessage(){
+
+//        String urlOwnerForm = ("http://139.59.149.247:8000/petclinic/owners/add");
+//        driver.get(urlOwnerForm);
+        goToNewOwner();
+
+//        WebElement addressFieldInvData = driver.findElement(By.id("address"));
+//        addressFieldInvData.clear();
+//        addressFieldInvData.sendKeys("a");
+//        addressFieldInvData.sendKeys("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b" +
+//         "\b\b\b\b\b\b\b\b\b\b\b");
+        checkAddressOrCityInvalidData("address");
+
+        WebElement checkOfInfMessage = driver.findElement(By.xpath("//*[text()='Address is required']"));
+        String checkOfInfMessageText = checkOfInfMessage.getText();
+
+        assertEquals(checkOfInfMessageText,"Address is required");
+
+    }
+    //negative case
+    @Test
+    public void cityFieldCheckInfMessage(){
+
+//        String urlOwnerForm = ("http://139.59.149.247:8000/petclinic/owners/add");
+//        driver.get(urlOwnerForm);
+        goToNewOwner();
+
+//        WebElement cityField =driver.findElement(By.id("city"));
+//        cityField.clear();
+//        cityField.sendKeys("q");
+//        cityField.sendKeys("\b\b\b\b\b\b\b\b\b\b\b\b");
+        checkAddressOrCityInvalidData("city");
+
+        WebElement cityFieldInvData  = driver.findElement(By.xpath("//*[text()='City is required']"));
+        String cityFieldInvDataText = cityFieldInvData.getText();
+//
+        assertEquals(cityFieldInvDataText,"City is required");
+
+
+    }
+
+
     //enter letters instead of numbers to check appeared information message
     @Test
 
     public void telephoneFieldCheckInfMessage(){
 
-        String urlOwnerForm = ("http://139.59.149.247:8000/petclinic/owners/add");
-        driver.get(urlOwnerForm);
+//        String urlOwnerForm = ("http://139.59.149.247:8000/petclinic/owners/add");
+//        driver.get(urlOwnerForm);
+        goToNewOwner();
 
-        WebElement telephoneFieldData = driver.findElement(By.cssSelector("#telephone"));
-        telephoneFieldData.clear();
-        telephoneFieldData.sendKeys("gr");
+//        WebElement telephoneFieldData = driver.findElement(By.cssSelector("#telephone"));
+//        telephoneFieldData.clear();
+//        telephoneFieldData.sendKeys("gr");
+        checkInfMessageTelephoneField();
 
-        WebElement checkTelephoneField = driver.findElement(By.xpath("//*[text()='Phone number only accept digits']"));
-        String checkTelephoneFieldText = checkTelephoneField.getText();
+       WebElement checkTelephoneField = driver.findElement(By.xpath("//*[text()='Phone number only accept digits']"));
+       String checkTelephoneFieldText = checkTelephoneField.getText();
+
 
         assertEquals(checkTelephoneFieldText,"Phone number only accept digits");
 
