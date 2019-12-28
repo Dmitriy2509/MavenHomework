@@ -13,6 +13,7 @@ public class Specialties extends BaseTestClass {
         clickAddButton();
         setNameSpeciality("tough man");
         clickSaveButton();
-
     }
+
+
 }

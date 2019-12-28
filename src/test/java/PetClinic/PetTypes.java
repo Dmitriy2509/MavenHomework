@@ -13,11 +13,7 @@ public class PetTypes extends BaseTestClass {
         addNewPetTypesOpenField();
         addNewType("guinea pig");
         clickSave();
-
     }
-
-    
-
 
 
 }

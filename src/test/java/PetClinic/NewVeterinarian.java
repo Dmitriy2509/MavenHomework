@@ -17,8 +17,6 @@ import static org.testng.Assert.assertEquals;
 
 public class NewVeterinarian extends BaseTestClass {
 
-
-
     @Test
     //positive case
     public void addNewVeterinarian(){
@@ -31,13 +29,11 @@ public class NewVeterinarian extends BaseTestClass {
 //        WebElement setFirstName = driver.findElement(By.id("firstName"));
 //        setFirstName.clear();
 //        setFirstName.sendKeys("Dmitriy");
-
         setNameOntoFirstNameField("Dmitriy");
 
 //        WebElement setLastName = driver.findElement(By.id("lastName"));
 //        setLastName.clear();
 //        setLastName.sendKeys("Bond");
-
         setLastnameOntoLastnameField("Tiger");
 
 //        WebElement divClick = driver.findElement(By.xpath("//div/select"));
@@ -46,15 +42,12 @@ public class NewVeterinarian extends BaseTestClass {
 //        WebElement dropdown = driver.findElement(By.id("specialties"));
 //        Select select = new Select (dropdown);
 //        select.selectByVisibleText(" dentistry ");
-
         chooseSpecialties(" dentistry ");
 
 //        WebElement saveVetButton = driver.findElement(By.xpath("//*[text()='Save Vet']"));
 //        saveVetButton.click();
         saveProfileOfVeterinarian();
-
     }
-
 
     //negative
     @Test
@@ -69,12 +62,10 @@ public class NewVeterinarian extends BaseTestClass {
 //        firstName.sendKeys("D");
         setNameOntoFirstNameField("D");
 
-        WebElement checkInfMessage =
-                driver.findElement(By.xpath("//*[text()='First name must be at least 2 characters long']"));
+        WebElement checkInfMessage = driver.findElement(By.xpath("//div/span[@class='help-block']"));
         String checkInfMessageText = checkInfMessage.getText();
 
         assertEquals(checkInfMessageText,"First name must be at least 2 characters long");
-
     }
 
     @Test
@@ -89,12 +80,10 @@ public class NewVeterinarian extends BaseTestClass {
 //        lastName.sendKeys("D");
         setLastnameOntoLastnameField("D");
 
-        WebElement lastNameInfMessage =
-                driver.findElement(By.xpath("//*[text()='Last name must be at least 2 characters long']"));
+        WebElement lastNameInfMessage = driver.findElement(By.xpath("//div/span[@class='help-block']"));
         String lastNameInfMessageText = lastNameInfMessage.getText();
 
         assertEquals(lastNameInfMessageText,"Last name must be at least 2 characters long");
-
     }
 
 

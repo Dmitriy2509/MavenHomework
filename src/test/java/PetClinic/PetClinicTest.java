@@ -16,8 +16,6 @@ import static org.testng.Assert.assertEquals;
 
 public class PetClinicTest extends BaseTestClass {
 
-
-
     //positive test case Add new owner
     @Test
     public void AddNewOwnerValidData(){
@@ -30,7 +28,6 @@ public class PetClinicTest extends BaseTestClass {
 //        WebElement firstNameField = driver.findElement(By.id("firstName"));
 //        firstNameField.clear();
 //        firstNameField.sendKeys("Dmitriy");
-
         setNameOntoFirstNameField("Dmitriy");
 
 //        WebElement lastNameField = driver.findElement(By.cssSelector("#lastName"));
@@ -41,7 +38,7 @@ public class PetClinicTest extends BaseTestClass {
 //        WebElement adress = driver.findElement(By.id("address"));
 //        adress.clear();
 //        adress.sendKeys("flat 42");
-        setAddressOntoAddressField();
+        setAddressOntoAddressField("flat 20");
 
 //        WebElement city = driver.findElement(By.cssSelector("#city"));
 //        city.clear();
@@ -51,17 +48,14 @@ public class PetClinicTest extends BaseTestClass {
 //        WebElement telephone = driver.findElement(By.id("telephone"));
 //        telephone.clear();
 //        telephone.sendKeys("380997258137");
-
         setPhoneNumberOntoPhoneNumberField();
 
 //       WebElement  addOwnerButton = driver.findElement(By.xpath("//*[text()='Add Owner']"));
 //       addOwnerButton.click();
         clickAddOwnerButton();
-
     }
 
     //Negative test
-
     //Enter name Which lenght is one symbol and check the inforamtion message
     @Test
     public void firstNameFieldCheckInfMessage(){
@@ -79,7 +73,6 @@ public class PetClinicTest extends BaseTestClass {
         String checkTextOfFirstnameFieldText =  checkTextOfFirstnameField.getText();
 
         assertEquals(checkTextOfFirstnameFieldText,"First name must be at least 2 characters long");
-
     }
 
     //enter one symbol to check appeared information message
@@ -95,11 +88,10 @@ public class PetClinicTest extends BaseTestClass {
 //        lastNameFieldInvalData.sendKeys("5");
         setLastnameOntoLastnameField("5");
 
-        WebElement checkTextofLastnameField = driver.findElement(By.xpath("//*[text()='Last name must be at least 2 characters long']"));
+        WebElement checkTextofLastnameField = driver.findElement(By.xpath("//div/span[@class='help-block']"));
         String checkTextofLastnameFieldText = checkTextofLastnameField.getText();
 
         assertEquals(checkTextofLastnameFieldText,"Last name must be at least 2 characters long");
-
     }
 
     @Test
@@ -116,12 +108,12 @@ public class PetClinicTest extends BaseTestClass {
 //         "\b\b\b\b\b\b\b\b\b\b\b");
         checkAddressOrCityInvalidData("address");
 
-        WebElement checkOfInfMessage = driver.findElement(By.xpath("//*[text()='Address is required']"));
+        WebElement checkOfInfMessage = driver.findElement(By.xpath("//div/span[@class='help-block']"));
         String checkOfInfMessageText = checkOfInfMessage.getText();
 
         assertEquals(checkOfInfMessageText,"Address is required");
-
     }
+
     //negative case
     @Test
     public void cityFieldCheckInfMessage(){
@@ -136,18 +128,14 @@ public class PetClinicTest extends BaseTestClass {
 //        cityField.sendKeys("\b\b\b\b\b\b\b\b\b\b\b\b");
         checkAddressOrCityInvalidData("city");
 
-        WebElement cityFieldInvData  = driver.findElement(By.xpath("//*[text()='City is required']"));
+        WebElement cityFieldInvData  = driver.findElement(By.xpath("//div/span[@class='help-block']"));
         String cityFieldInvDataText = cityFieldInvData.getText();
 //
         assertEquals(cityFieldInvDataText,"City is required");
-
-
     }
-
 
     //enter letters instead of numbers to check appeared information message
     @Test
-
     public void telephoneFieldCheckInfMessage(){
 
 //        String urlOwnerForm = ("http://139.59.149.247:8000/petclinic/owners/add");
@@ -159,12 +147,10 @@ public class PetClinicTest extends BaseTestClass {
 //        telephoneFieldData.sendKeys("gr");
         checkInfMessageTelephoneField();
 
-       WebElement checkTelephoneField = driver.findElement(By.xpath("//*[text()='Phone number only accept digits']"));
+       WebElement checkTelephoneField = driver.findElement(By.xpath("//div/span[@class='help-block']"));
        String checkTelephoneFieldText = checkTelephoneField.getText();
 
-
         assertEquals(checkTelephoneFieldText,"Phone number only accept digits");
-
     }
 
 
