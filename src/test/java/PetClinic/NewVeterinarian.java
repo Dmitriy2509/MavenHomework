@@ -60,7 +60,7 @@ public class NewVeterinarian extends BaseTestClass {
 //        WebElement firstName = driver.findElement(By.id("firstName"));
 //        firstName.clear();
 //        firstName.sendKeys("D");
-        setNameOntoFirstNameField("D");
+        setNameOntoFirstNameField("f");
 
         WebElement checkInfMessage = driver.findElement(By.xpath("//div/span[@class='help-block']"));
         String checkInfMessageText = checkInfMessage.getText();

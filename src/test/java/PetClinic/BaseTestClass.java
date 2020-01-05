@@ -18,7 +18,7 @@ import static org.testng.Assert.assertEquals;
 
 public class BaseTestClass {
 
-    public static WebDriver driver;
+    public WebDriver driver;
 
     @BeforeClass
     public void setUp() {
@@ -31,7 +31,7 @@ public class BaseTestClass {
 
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(20000, TimeUnit.MILLISECONDS);
+        driver.manage().timeouts().implicitlyWait(5000, TimeUnit.MILLISECONDS);
     }
 
     @AfterMethod
@@ -41,52 +41,59 @@ public class BaseTestClass {
     }
 
      //private static WebDriverWait wait = new WebDriverWait(driver,4);
-    private static final String url = "http://139.59.149.247:8000/petclinic/";
+    private static final String url = "http://139.59.149.247:8000/petclinic";
 
     //copy paste
-    protected static WebDriverWait waitFor() {
+    protected WebDriverWait waitFor() {
 
-        return new WebDriverWait(driver, 4);
+        return new WebDriverWait(driver, 5);
     }
 
-    public static void goToUrl(String url) {
+    public void goToUrl(String url) {
 
         driver.get(url);
     }
 
-    public static void goToNewVeterinarian() {
+    public  void goToNewVeterinarian() {
 
-        goToUrl(url + "vets/add");
+        goToUrl(url + "/vets/add");
         waitFor().until(ExpectedConditions.titleIs("SpringPetclinicAngular"));
     }
 
-    public static void goToNewOwner() {
+    public  void goToNewOwner() {
 
-        goToUrl(url + "owners/add");
+        goToUrl(url + "/owners/add");
         waitFor().until(ExpectedConditions.titleIs("SpringPetclinicAngular"));
     }
 
-    public static void goToPetTypes() {
+    public void goToPetTypes() {
 
-        goToUrl(url + "pettypes");
+        goToUrl(url + "/pettypes");
         waitFor().until(ExpectedConditions.titleIs("SpringPetclinicAngular"));
     }
 
-    public static void goToSpeciality() {
+    public void goToSpeciality() {
 
-        goToUrl(url + "specialties");
+        goToUrl(url + "/specialties");
         //waitFor().until(ExpectedConditions.titleIs("specialties"));
         waitFor().until(ExpectedConditions.titleIs("SpringPetclinicAngular"));
     }
 
-    public static void setNameOntoFirstNameField(String name) {
+    public void setNameOntoFirstNameField(String name) {
 
         WebElement setFirstName = driver.findElement(By.id("firstName"));
         setFirstName.clear();
         setFirstName.sendKeys(name);
     }
 
-    public static void setLastnameOntoLastnameField(String lastname) {
+    public  void setLastnameOntoLastnameField(String lastname) {
+
+        WebElement lastNameField = driver.findElement(By.cssSelector("#lastName"));
+        lastNameField.clear();
+        lastNameField.sendKeys(lastname);
+    }
+
+    public  void setInvalidLastnameOntoLastnameField(String lastname) {
 
         WebElement lastNameField = driver.findElement(By.cssSelector("#lastName"));
         lastNameField.clear();
@@ -94,42 +101,42 @@ public class BaseTestClass {
     }
 
     //new veterinarian
-    public static void chooseSpecialties(String specialties) {
+    public void chooseSpecialties(String specialties) {
 
         WebElement dropdown = driver.findElement(By.id("specialties"));
         Select select = new Select(dropdown);
         select.selectByVisibleText(specialties);
     }
 
-    public static void saveProfileOfVeterinarian() {
+    public void saveProfileOfVeterinarian() {
 
         WebElement saveVetButton = driver.findElement(By.xpath("//*[text()='Save Vet']"));
         saveVetButton.click();
     }
     //petClinic
 
-    public static void setAddressOntoAddressField(String addressOfPet) {
+    public void setAddressOntoAddressField(String addressOfPet) {
 
         WebElement adress = driver.findElement(By.id("address"));
         adress.clear();
         adress.sendKeys(addressOfPet);
     }
 
-    public static void setCityOntoCityField() {
+    public void setCityOntoCityField(String city) {
 
-        WebElement city = driver.findElement(By.cssSelector("#city"));
-        city.clear();
-        city.sendKeys("Dnipro");
+        WebElement cityfield = driver.findElement(By.cssSelector("#city"));
+        cityfield.clear();
+        cityfield.sendKeys(city);
     }
 
-    public static void setPhoneNumberOntoPhoneNumberField() {
+    public  void setPhoneNumberOntoPhoneNumberField(String number) {
 
         WebElement telephone = driver.findElement(By.id("telephone"));
         telephone.clear();
-        telephone.sendKeys("380997258137");
+        telephone.sendKeys(number);
     }
 
-    public static void clickAddOwnerButton() {
+    public void clickAddOwnerButton() {
 
         WebElement addOwnerButton = driver.findElement(By.xpath("//*[text()='Add Owner']"));
         addOwnerButton.click();
@@ -152,7 +159,7 @@ public class BaseTestClass {
 //        cityField.sendKeys("\b\b\b\b\b\b\b\b\b\b\b\b");
 //    }
 
-    public static void checkAddressOrCityInvalidData(String id) {
+    public void checkAddressOrCityInvalidData(String id) {
 
         WebElement addressFieldInvData = driver.findElement(By.id(id));
         addressFieldInvData.clear();
@@ -161,46 +168,46 @@ public class BaseTestClass {
                 "\b\b\b\b\b\b\b\b\b\b\b");
     }
 
-    public static void checkInfMessageTelephoneField() {
+    public void checkInfMessageTelephoneField(String number) {
 
         WebElement telephoneFieldData = driver.findElement(By.cssSelector("#telephone"));
         telephoneFieldData.clear();
-        telephoneFieldData.sendKeys("gr");
+        telephoneFieldData.sendKeys(number);
     }
 
-    public static void message() {
+    public void message() {
 
         WebElement checkTelephoneField = driver.findElement(By.xpath("//div/span[@class='help-block']"));
         String checkTelephoneFieldText = checkTelephoneField.getText();
     }
 
     //pet types
-    public static void addNewPetTypesOpenField() {
+    public void addNewPetTypesOpenField() {
 
         WebElement clickOnAddButton = driver.findElement(By.xpath("//*[normalize-space(text()) ='Add']"));
         clickOnAddButton.click();
 
     }
 
-    public static void addNewType(String type) {
+    public void addNewType(String type) {
 
         WebElement addTypeOfAnimal = driver.findElement(By.id("name"));
         addTypeOfAnimal.clear();
         addTypeOfAnimal.sendKeys(type);
     }
 
-    public static void clickSave() {
+    public void clickSave() {
 
         WebElement clickSave = driver.findElement(By.xpath("//*[text()='Save']"));
     }
 
-    public static void clickAddButton() {
+    public void clickAddButton() {
 
         WebElement addButton = driver.findElement(By.xpath("//*[normalize-space(text())='Add']"));
         addButton.click();
     }
 
-    public static void setNameSpeciality(String nameSpeciality) {
+    public void setNameSpeciality(String nameSpeciality) {
 
         WebElement nameField = driver.findElement(By.id("name"));
         WebElement homeBtn = waitFor().until(ExpectedConditions
@@ -210,7 +217,7 @@ public class BaseTestClass {
         nameField.sendKeys(nameSpeciality);
     }
 
-    public static void clickSaveButton() {
+    public void clickSaveButton() {
 
         WebElement clickSaveButton = driver.findElement(By.xpath("//*[text()='Save']"));
         clickSaveButton.click();

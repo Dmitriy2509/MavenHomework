@@ -43,12 +43,12 @@ public class PetClinicTest extends BaseTestClass {
 //        WebElement city = driver.findElement(By.cssSelector("#city"));
 //        city.clear();
 //        city.sendKeys("Dnipro");
-        setCityOntoCityField();
+        setCityOntoCityField("Dnipro");
 
 //        WebElement telephone = driver.findElement(By.id("telephone"));
 //        telephone.clear();
 //        telephone.sendKeys("380997258137");
-        setPhoneNumberOntoPhoneNumberField();
+        setPhoneNumberOntoPhoneNumberField("380994595271");
 
 //       WebElement  addOwnerButton = driver.findElement(By.xpath("//*[text()='Add Owner']"));
 //       addOwnerButton.click();
@@ -145,7 +145,7 @@ public class PetClinicTest extends BaseTestClass {
 //        WebElement telephoneFieldData = driver.findElement(By.cssSelector("#telephone"));
 //        telephoneFieldData.clear();
 //        telephoneFieldData.sendKeys("gr");
-        checkInfMessageTelephoneField();
+        checkInfMessageTelephoneField("dsf");
 
        WebElement checkTelephoneField = driver.findElement(By.xpath("//div/span[@class='help-block']"));
        String checkTelephoneFieldText = checkTelephoneField.getText();
