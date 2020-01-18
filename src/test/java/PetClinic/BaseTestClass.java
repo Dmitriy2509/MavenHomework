@@ -31,7 +31,7 @@ public class BaseTestClass {
 
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(5000, TimeUnit.MILLISECONDS);
+        driver.manage().timeouts().implicitlyWait(10000, TimeUnit.MILLISECONDS);
     }
 
     @AfterMethod
@@ -54,31 +54,37 @@ public class BaseTestClass {
         driver.get(url);
     }
 
-    public  void goToNewVeterinarian() {
+    public  NewVeterinarianPageObject goToNewVeterinarian() {
 
         goToUrl(url + "/vets/add");
         waitFor().until(ExpectedConditions.titleIs("SpringPetclinicAngular"));
+        return new NewVeterinarianPageObject(driver);
     }
 
-    public  void goToNewOwner() {
+    public  AddNewOwnerPageObject goToNewOwner() {
 
         goToUrl(url + "/owners/add");
         waitFor().until(ExpectedConditions.titleIs("SpringPetclinicAngular"));
+        return new AddNewOwnerPageObject(driver);
     }
 
-    public void goToPetTypes() {
+    public PetTypesPageObject goToPetTypes() {
 
         goToUrl(url + "/pettypes");
         waitFor().until(ExpectedConditions.titleIs("SpringPetclinicAngular"));
+        return new PetTypesPageObject(driver);
     }
 
-    public void goToSpeciality() {
+    public SpecialtiesPageObject goToSpeciality() {
 
         goToUrl(url + "/specialties");
         //waitFor().until(ExpectedConditions.titleIs("specialties"));
         waitFor().until(ExpectedConditions.titleIs("SpringPetclinicAngular"));
+        return new SpecialtiesPageObject(driver);
     }
 
+    //code below is modified and
+    /*
     public void setNameOntoFirstNameField(String name) {
 
         WebElement setFirstName = driver.findElement(By.id("firstName"));
@@ -222,5 +228,5 @@ public class BaseTestClass {
         WebElement clickSaveButton = driver.findElement(By.xpath("//*[text()='Save']"));
         clickSaveButton.click();
     }
-
+    */
 }

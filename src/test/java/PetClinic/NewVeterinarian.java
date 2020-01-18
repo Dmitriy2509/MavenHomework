@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 import static org.testng.Assert.assertEquals;
 
 public class NewVeterinarian extends BaseTestClass {
-
+/*
     @Test
     //positive case
     public void addNewVeterinarian(){
@@ -86,5 +86,5 @@ public class NewVeterinarian extends BaseTestClass {
         assertEquals(lastNameInfMessageText,"Last name must be at least 2 characters long");
     }
 
-
+*/
 }

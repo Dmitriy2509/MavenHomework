@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 import static org.testng.Assert.assertEquals;
 
 public class PetClinicTest extends BaseTestClass {
-
+/*
     //positive test case Add new owner
     @Test
     public void AddNewOwnerValidData(){
@@ -154,5 +154,5 @@ public class PetClinicTest extends BaseTestClass {
     }
 
 
-
+*/
 }

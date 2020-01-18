@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
 public class Specialties extends BaseTestClass {
-
+/*
     @Test
     public void addSpecialty (){
 
@@ -14,6 +14,6 @@ public class Specialties extends BaseTestClass {
         setNameSpeciality("tough man");
         clickSaveButton();
     }
-
+*/
 
 }

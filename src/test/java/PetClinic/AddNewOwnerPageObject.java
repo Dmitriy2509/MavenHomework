@@ -9,21 +9,31 @@ import static org.testng.Assert.assertEquals;
 public class AddNewOwnerPageObject {
 
     private WebDriver driver;
+    private By firstNameField = By.id("firstName");
+    private By lastNameFieldId  = By.id("lastName");
+    private By adressField = By.id("address");
+    private By cityField = By.cssSelector("#city");
+    private By telephoneField = By.id("telephone");
 
     public AddNewOwnerPageObject(WebDriver driver) {
         this.driver = driver;
     }
 
+    //example how to write locators Which can be used a lot of time in a code
+    private WebElement getFirstNameField() {
+        return driver.findElement(By.id("firstName"));
+    }
+
     public void setNameOntoFirstNameField(String name) {
 
-        WebElement setFirstName = driver.findElement(By.id("firstName"));
+        WebElement setFirstName =getFirstNameField();
         setFirstName.clear();
         setFirstName.sendKeys(name);
     }
     //set one letter on the "Name" field
     public void setInvalidNameOntoFirstNameField(String name) {
 
-        WebElement setFirstName = driver.findElement(By.id("firstName"));
+        WebElement setFirstName = driver.findElement(firstNameField);
         setFirstName.clear();
         setFirstName.sendKeys(name);
 
@@ -36,14 +46,14 @@ public class AddNewOwnerPageObject {
 
     public void setLastnameOntoLastnameField(String lastname) {
 
-        WebElement lastNameField = driver.findElement(By.cssSelector("#lastName"));
+        WebElement lastNameField = driver.findElement(lastNameFieldId);
         lastNameField.clear();
         lastNameField.sendKeys(lastname);
     }
 
     public  void setInvalidLastnameOntoLastnameField(String lastname) {
 
-        WebElement lastNameField = driver.findElement(By.cssSelector("#lastName"));
+        WebElement lastNameField = driver.findElement(lastNameFieldId);
         lastNameField.clear();
         lastNameField.sendKeys(lastname);
 
@@ -55,7 +65,7 @@ public class AddNewOwnerPageObject {
 
     public void setAddressOntoAddressField(String addressOfPet) {
 
-        WebElement adress = driver.findElement(By.id("address"));
+        WebElement adress = driver.findElement(adressField);
         adress.clear();
         adress.sendKeys(addressOfPet);
     }
@@ -63,7 +73,7 @@ public class AddNewOwnerPageObject {
     public void setInvalidAddressOntoAddressField(String addressOfPet) {
 
 
-        WebElement addressFieldInvData = driver.findElement(By.id("address"));
+        WebElement addressFieldInvData = driver.findElement(adressField);
         addressFieldInvData.clear();
         addressFieldInvData.sendKeys(addressOfPet);
         addressFieldInvData.sendKeys("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b" +
@@ -78,7 +88,7 @@ public class AddNewOwnerPageObject {
     public void setInvalidCityOntoAddressField(String city) {
 
 
-        WebElement addressFieldInvData = driver.findElement(By.id("city"));
+        WebElement addressFieldInvData = driver.findElement(cityField);
         addressFieldInvData.clear();
         addressFieldInvData.sendKeys(city);
         addressFieldInvData.sendKeys("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b" +
@@ -93,21 +103,21 @@ public class AddNewOwnerPageObject {
 
     public void setCityOntoCityField(String city) {
 
-        WebElement cityfield = driver.findElement(By.cssSelector("#city"));
+        WebElement cityfield = driver.findElement(cityField);
         cityfield.clear();
         cityfield.sendKeys(city);
     }
 
     public void setPhoneNumberOntoPhoneNumberField(String number) {
 
-        WebElement telephone = driver.findElement(By.id("telephone"));
+        WebElement telephone = driver.findElement(telephoneField);
         telephone.clear();
         telephone.sendKeys(number);
     }
 
     public void setInvalidPhoneNumberOntoPhoneNumberField(String number) {
 
-        WebElement telephone = driver.findElement(By.id("telephone"));
+        WebElement telephone = driver.findElement(telephoneField);
         telephone.clear();
         telephone.sendKeys(number);
 

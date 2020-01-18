@@ -2,16 +2,41 @@ package PetClinic;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
 public class PetClinicTestPageObject extends BaseTestClass {
+    //exmple how to write class one time instead of a lot
+//    private AddNewOwnerPageObject addNewOwnerPageObject;
+//    private NewVeterinarianPageObject newVeterinarianPageObject;
+//    private PetTypesPageObject petTypesPageObject;
+//    private SpecialtiesPageObject specialtiesPageObject;
+
+    @BeforeMethod
+//    public void gotopage() {
+//        addNewOwnerPageObject = goToNewOwner();
+//    }
+//
+//    public void goToPetTypesPage(){
+//
+//        petTypesPageObject = goToPetTypes();
+//    }
+//
+//    public void goToVeterinarian(){
+//
+//        newVeterinarianPageObject = goToNewVeterinarian();
+//    }
+//    public void goTospecialityPageObject(){
+//        specialtiesPageObject= goToSpeciality();
+//    }
 
     @Test
     public void AddNewOwnerValidData(){
-         AddNewOwnerPageObject addNewOwnerPageObject = new AddNewOwnerPageObject(driver);
-       goToNewOwner();
+
+        AddNewOwnerPageObject addNewOwnerPageObject =goToNewOwner();
+
        addNewOwnerPageObject.setNameOntoFirstNameField("Dmitriy");
        addNewOwnerPageObject.setLastnameOntoLastnameField("Harris");
        addNewOwnerPageObject.setAddressOntoAddressField("flat 20");
@@ -23,49 +48,48 @@ public class PetClinicTestPageObject extends BaseTestClass {
 
     @Test
     public void firstNameFieldCheckInfMessage(){
-        AddNewOwnerPageObject addNewOwnerPageObject = new AddNewOwnerPageObject(driver);
 
-        goToNewOwner();
+        AddNewOwnerPageObject addNewOwnerPageObject =goToNewOwner();
+
         addNewOwnerPageObject.setInvalidNameOntoFirstNameField("1");
     }
 
     @Test
     public void lastNameFieldCheckInfMessage(){
-        AddNewOwnerPageObject addNewOwnerPageObject = new AddNewOwnerPageObject(driver);
 
-        goToNewOwner();
+        AddNewOwnerPageObject addNewOwnerPageObject =goToNewOwner();
+
         addNewOwnerPageObject.setInvalidLastnameOntoLastnameField("D");
     }
 
     @Test
     public void addressFieldCheckInfMessage(){
-        AddNewOwnerPageObject addNewOwnerPageObject = new AddNewOwnerPageObject(driver);
 
-        goToNewOwner();
+        AddNewOwnerPageObject addNewOwnerPageObject =goToNewOwner();
+
         addNewOwnerPageObject.setInvalidAddressOntoAddressField("Ab");
-
     }
 
     @Test
     public void cityFieldCheckInfMessage(){
-        AddNewOwnerPageObject addNewOwnerPageObject = new AddNewOwnerPageObject(driver);
 
-        goToNewOwner();
+        AddNewOwnerPageObject addNewOwnerPageObject =goToNewOwner();
+
         addNewOwnerPageObject.setInvalidCityOntoAddressField("Z");
     }
 
     @Test
     public void telephoneFieldCheckInfMessage(){
-        AddNewOwnerPageObject addNewOwnerPageObject = new AddNewOwnerPageObject(driver);
 
-        goToNewOwner();
+        AddNewOwnerPageObject addNewOwnerPageObject =goToNewOwner();
+
         addNewOwnerPageObject.setInvalidPhoneNumberOntoPhoneNumberField("df");
     }
 
     //positive addNewVeterinarian
     @Test
     public void addNewVeterinarian(){
-        NewVeterinarianPageObject newVeterinarianPageObject = new NewVeterinarianPageObject(driver);
+    NewVeterinarianPageObject newVeterinarianPageObject= goToNewVeterinarian();
 
         goToNewVeterinarian();
         newVeterinarianPageObject.setNameOntoFirstNameField("Dmitriy");
@@ -78,16 +102,13 @@ public class PetClinicTestPageObject extends BaseTestClass {
 
     @Test
     public void checkInfMessageFirstName(){
-        NewVeterinarianPageObject newVeterinarianPageObject = new NewVeterinarianPageObject(driver);
-
-        goToNewVeterinarian();
+        NewVeterinarianPageObject newVeterinarianPageObject= goToNewVeterinarian();
         newVeterinarianPageObject.setInvalidNameOntoFirstNameField("P");
     }
 
     @Test
     public void checkInfMessageLastName(){
-        NewVeterinarianPageObject newVeterinarianPageObject = new NewVeterinarianPageObject(driver);
-
+        NewVeterinarianPageObject newVeterinarianPageObject= goToNewVeterinarian();
         goToNewVeterinarian();
         newVeterinarianPageObject.setInvalidLastnameOntoLastnameField("h");
     }
@@ -95,7 +116,7 @@ public class PetClinicTestPageObject extends BaseTestClass {
     //positive PetTypes
     @Test
     public void addNewPetTypeToList (){
-        PetTypesPageObject petTypesPageObject = new PetTypesPageObject(driver);
+        PetTypesPageObject petTypesPageObject= goToPetTypes();
 
         goToPetTypes();
         petTypesPageObject.addNewPetTypesOpenField();
@@ -106,7 +127,7 @@ public class PetClinicTestPageObject extends BaseTestClass {
     //positive Specialties
     @Test
     public void addSpecialty  (){
-        SpecialtiesPageObject specialtiesPageObject = new SpecialtiesPageObject(driver);
+        SpecialtiesPageObject specialtiesPageObject =goToSpeciality();
 
         goToSpeciality();
         specialtiesPageObject.clickAddButton();
