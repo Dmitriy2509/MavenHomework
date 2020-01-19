@@ -11,7 +11,7 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.Matchers.hasItems;
 
 public class PetTypesTest {
-
+/*
     @BeforeClass
     public void setUp(){
     RestAssured.baseURI ="http://139.59.149.247:9966";
@@ -22,7 +22,7 @@ public class PetTypesTest {
 
     }
 
- //   @Test
+    @Test
     public void getPetTypeTest(){
         RestAssured.given()
                 .accept(ContentType.JSON)
@@ -37,7 +37,7 @@ public class PetTypesTest {
 
 
     }
-  //  @Test
+    @Test
     public void getPetTypeByIdTest(){
         RestAssured.given()
                 .accept(ContentType.JSON)
@@ -49,7 +49,7 @@ public class PetTypesTest {
                 .body ("name", equalTo("cat"))
                 .log().all();
     }
-
+*/
 
 
 //    @Test

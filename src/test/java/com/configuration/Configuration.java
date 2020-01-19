@@ -1,4 +1,4 @@
-package PetClinic.configuration.com;
+package com.configuration;
 
 public class Configuration {
 

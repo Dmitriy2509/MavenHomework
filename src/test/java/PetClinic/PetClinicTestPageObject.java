@@ -1,5 +1,6 @@
 package PetClinic;
 
+import io.qameta.allure.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeMethod;
@@ -7,6 +8,8 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
+@Epic("Petclicnic")
+@Feature("Owner")
 public class PetClinicTestPageObject extends BaseTestClass {
     //exmple how to write class one time instead of a lot
 //    private AddNewOwnerPageObject addNewOwnerPageObject;
@@ -14,7 +17,7 @@ public class PetClinicTestPageObject extends BaseTestClass {
 //    private PetTypesPageObject petTypesPageObject;
 //    private SpecialtiesPageObject specialtiesPageObject;
 
-    @BeforeMethod
+//    @BeforeMethod
 //    public void gotopage() {
 //        addNewOwnerPageObject = goToNewOwner();
 //    }
@@ -31,8 +34,9 @@ public class PetClinicTestPageObject extends BaseTestClass {
 //    public void goTospecialityPageObject(){
 //        specialtiesPageObject= goToSpeciality();
 //    }
-
-    @Test
+    @Story("Create Owner")
+    @Severity(SeverityLevel.BLOCKER)
+    @Test(description = "Add new valid Owner test")
     public void AddNewOwnerValidData(){
 
         AddNewOwnerPageObject addNewOwnerPageObject =goToNewOwner();
@@ -45,8 +49,9 @@ public class PetClinicTestPageObject extends BaseTestClass {
        addNewOwnerPageObject.clickAddOwnerButton();
     }
     //negative test case
-
-    @Test
+    @Story("Information message about invalid first name")
+    @Severity(SeverityLevel.NORMAL)
+    @Test(description = "Enter invalid name onto first name field")
     public void firstNameFieldCheckInfMessage(){
 
         AddNewOwnerPageObject addNewOwnerPageObject =goToNewOwner();
@@ -54,7 +59,9 @@ public class PetClinicTestPageObject extends BaseTestClass {
         addNewOwnerPageObject.setInvalidNameOntoFirstNameField("1");
     }
 
-    @Test
+    @Story("Information message about invalid last name")
+    @Severity(SeverityLevel.NORMAL)
+    @Test(description = "Enter invalid last name onto last name field")
     public void lastNameFieldCheckInfMessage(){
 
         AddNewOwnerPageObject addNewOwnerPageObject =goToNewOwner();
@@ -62,7 +69,9 @@ public class PetClinicTestPageObject extends BaseTestClass {
         addNewOwnerPageObject.setInvalidLastnameOntoLastnameField("D");
     }
 
-    @Test
+    @Story("Information message about invalid address")
+    @Severity(SeverityLevel.NORMAL)
+    @Test (description = "Enter invalid address onto address field")
     public void addressFieldCheckInfMessage(){
 
         AddNewOwnerPageObject addNewOwnerPageObject =goToNewOwner();
@@ -70,7 +79,9 @@ public class PetClinicTestPageObject extends BaseTestClass {
         addNewOwnerPageObject.setInvalidAddressOntoAddressField("Ab");
     }
 
-    @Test
+    @Story("Information message about invalid city")
+    @Severity(SeverityLevel.NORMAL)
+    @Test (description = "Enter invalid city onto city field")
     public void cityFieldCheckInfMessage(){
 
         AddNewOwnerPageObject addNewOwnerPageObject =goToNewOwner();
@@ -78,7 +89,9 @@ public class PetClinicTestPageObject extends BaseTestClass {
         addNewOwnerPageObject.setInvalidCityOntoAddressField("Z");
     }
 
-    @Test
+    @Story("Information message about invalid telephone")
+    @Severity(SeverityLevel.NORMAL)
+    @Test (description = "Enter invalid telephone number onto telephone field")
     public void telephoneFieldCheckInfMessage(){
 
         AddNewOwnerPageObject addNewOwnerPageObject =goToNewOwner();
@@ -87,11 +100,13 @@ public class PetClinicTestPageObject extends BaseTestClass {
     }
 
     //positive addNewVeterinarian
-    @Test
+    @Feature("Veterinarian")
+    @Story("Create Veterinarian")
+    @Severity(SeverityLevel.BLOCKER)
+    @Test(description = "Create Veterinarian")
     public void addNewVeterinarian(){
-    NewVeterinarianPageObject newVeterinarianPageObject= goToNewVeterinarian();
+        NewVeterinarianPageObject newVeterinarianPageObject= goToNewVeterinarian();
 
-        goToNewVeterinarian();
         newVeterinarianPageObject.setNameOntoFirstNameField("Dmitriy");
         newVeterinarianPageObject.setLastnameOntoLastnameField("Harris");
         newVeterinarianPageObject.chooseSpecialties(" dentistry ");
@@ -99,25 +114,31 @@ public class PetClinicTestPageObject extends BaseTestClass {
     }
 
     //negative addNewVeterinarian
-
-    @Test
+    @Story("Information message about invalid first name")
+    @Severity(SeverityLevel.NORMAL)
+    @Test (description = "Enter invalid first name onto first name field")
     public void checkInfMessageFirstName(){
         NewVeterinarianPageObject newVeterinarianPageObject= goToNewVeterinarian();
+
         newVeterinarianPageObject.setInvalidNameOntoFirstNameField("P");
     }
 
-    @Test
+    @Story("Information message about invalid last name")
+    @Severity(SeverityLevel.NORMAL)
+    @Test (description = "Enter invalid last name onto last name field")
     public void checkInfMessageLastName(){
         NewVeterinarianPageObject newVeterinarianPageObject= goToNewVeterinarian();
-        goToNewVeterinarian();
+
         newVeterinarianPageObject.setInvalidLastnameOntoLastnameField("h");
     }
 
     //positive PetTypes
-    @Test
+    @Feature("Add Pet Type")
+    @Story("Add PetType")
+    @Severity(SeverityLevel.BLOCKER)
+    @Test(description = "Create PetType")
     public void addNewPetTypeToList (){
-        PetTypesPageObject petTypesPageObject= goToPetTypes();
-
+        PetTypesPageObject petTypesPageObject= new PetTypesPageObject(driver) ;
         goToPetTypes();
         petTypesPageObject.addNewPetTypesOpenField();
         petTypesPageObject.addNewType("guinea pig");
@@ -125,10 +146,12 @@ public class PetClinicTestPageObject extends BaseTestClass {
     }
 
     //positive Specialties
-    @Test
+    @Feature("Add Specialty")
+    @Story("Add Specialty")
+    @Severity(SeverityLevel.BLOCKER)
+    @Test(description = "Create Specialty")
     public void addSpecialty  (){
-        SpecialtiesPageObject specialtiesPageObject =goToSpeciality();
-
+        SpecialtiesPageObject specialtiesPageObject = new SpecialtiesPageObject(driver);
         goToSpeciality();
         specialtiesPageObject.clickAddButton();
         specialtiesPageObject.setNameSpeciality("tough man");

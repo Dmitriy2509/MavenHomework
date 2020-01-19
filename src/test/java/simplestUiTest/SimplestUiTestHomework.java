@@ -15,7 +15,7 @@ import static org.testng.Assert.assertEquals;
 public class SimplestUiTestHomework {
     //homework start
     private WebDriver driver;
-
+/*
     @BeforeClass
     public void setUp(){
 
@@ -145,7 +145,7 @@ public class SimplestUiTestHomework {
 
 
 
-
+*/
 
 
 }

@@ -1,5 +1,6 @@
 package PetClinic;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -24,6 +25,7 @@ public class AddNewOwnerPageObject {
         return driver.findElement(By.id("firstName"));
     }
 
+    @Step("Set first name onto First Name field")
     public void setNameOntoFirstNameField(String name) {
 
         WebElement setFirstName =getFirstNameField();
@@ -31,6 +33,8 @@ public class AddNewOwnerPageObject {
         setFirstName.sendKeys(name);
     }
     //set one letter on the "Name" field
+
+    @Step("Set invalid first name onto First Name field")
     public void setInvalidNameOntoFirstNameField(String name) {
 
         WebElement setFirstName = driver.findElement(firstNameField);
@@ -44,6 +48,7 @@ public class AddNewOwnerPageObject {
 
     }
 
+    @Step("Set last name onto Last Name field")
     public void setLastnameOntoLastnameField(String lastname) {
 
         WebElement lastNameField = driver.findElement(lastNameFieldId);
@@ -51,6 +56,7 @@ public class AddNewOwnerPageObject {
         lastNameField.sendKeys(lastname);
     }
 
+    @Step("Set invalid last name onto Last Name field")
     public  void setInvalidLastnameOntoLastnameField(String lastname) {
 
         WebElement lastNameField = driver.findElement(lastNameFieldId);
@@ -63,6 +69,7 @@ public class AddNewOwnerPageObject {
         assertEquals(checkTextofLastnameFieldText,"Last name must be at least 2 characters long");
     }
 
+    @Step("Set address onto Address field")
     public void setAddressOntoAddressField(String addressOfPet) {
 
         WebElement adress = driver.findElement(adressField);
@@ -70,8 +77,8 @@ public class AddNewOwnerPageObject {
         adress.sendKeys(addressOfPet);
     }
 
+    @Step("Set invalid address onto Address field")
     public void setInvalidAddressOntoAddressField(String addressOfPet) {
-
 
         WebElement addressFieldInvData = driver.findElement(adressField);
         addressFieldInvData.clear();
@@ -85,8 +92,9 @@ public class AddNewOwnerPageObject {
         assertEquals(checkOfInfMessageText,"Address is required");
     }
     // set one letter onto the field
-    public void setInvalidCityOntoAddressField(String city) {
 
+    @Step("Set invalid city onto City field")
+    public void setInvalidCityOntoAddressField(String city) {
 
         WebElement addressFieldInvData = driver.findElement(cityField);
         addressFieldInvData.clear();
@@ -100,14 +108,14 @@ public class AddNewOwnerPageObject {
         assertEquals(checkOfInfMessageText,"City is required");
     }
 
-
+    @Step("Set city onto City field")
     public void setCityOntoCityField(String city) {
 
         WebElement cityfield = driver.findElement(cityField);
         cityfield.clear();
         cityfield.sendKeys(city);
     }
-
+    @Step("Set phone number onto Phone Number field")
     public void setPhoneNumberOntoPhoneNumberField(String number) {
 
         WebElement telephone = driver.findElement(telephoneField);
@@ -115,6 +123,7 @@ public class AddNewOwnerPageObject {
         telephone.sendKeys(number);
     }
 
+    @Step("Set invalid phone number onto Phone Number field")
     public void setInvalidPhoneNumberOntoPhoneNumberField(String number) {
 
         WebElement telephone = driver.findElement(telephoneField);
@@ -126,7 +135,7 @@ public class AddNewOwnerPageObject {
 
         assertEquals(checkTelephoneFieldText,"Phone number only accept digits");
     }
-
+    @Step("Add new owner")
     public void clickAddOwnerButton() {
 
         WebElement addOwnerButton = driver.findElement(By.xpath("//*[text()='Add Owner']"));

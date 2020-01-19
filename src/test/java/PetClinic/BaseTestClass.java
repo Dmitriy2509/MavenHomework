@@ -1,6 +1,7 @@
 package PetClinic;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -53,34 +54,34 @@ public class BaseTestClass {
 
         driver.get(url);
     }
-
+    @Step("Go to New Veterinarian page")
     public  NewVeterinarianPageObject goToNewVeterinarian() {
 
         goToUrl(url + "/vets/add");
         waitFor().until(ExpectedConditions.titleIs("SpringPetclinicAngular"));
         return new NewVeterinarianPageObject(driver);
     }
-
+    @Step("Go to New Owner page")
     public  AddNewOwnerPageObject goToNewOwner() {
 
         goToUrl(url + "/owners/add");
         waitFor().until(ExpectedConditions.titleIs("SpringPetclinicAngular"));
         return new AddNewOwnerPageObject(driver);
     }
-
-    public PetTypesPageObject goToPetTypes() {
+    @Step ("Go to Pet Types page")
+    public void goToPetTypes() {
 
         goToUrl(url + "/pettypes");
         waitFor().until(ExpectedConditions.titleIs("SpringPetclinicAngular"));
-        return new PetTypesPageObject(driver);
+//        return new PetTypesPageObject(driver);
     }
-
-    public SpecialtiesPageObject goToSpeciality() {
+    @Step("Go to Speciality page")
+    public void goToSpeciality() {
 
         goToUrl(url + "/specialties");
         //waitFor().until(ExpectedConditions.titleIs("specialties"));
         waitFor().until(ExpectedConditions.titleIs("SpringPetclinicAngular"));
-        return new SpecialtiesPageObject(driver);
+//        return new SpecialtiesPageObject(driver);
     }
 
     //code below is modified and
